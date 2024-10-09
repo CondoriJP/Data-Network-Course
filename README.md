@@ -27,21 +27,22 @@ Para ejecutar dicho modelo, el cual se basa en cliente-servidor, se debe clonar 
 (Solo valido para sistemas operativos Linux)
 
 ### Configuración
-Para configurar el modelo de Capa de Enlace, se debe modificar el archivo `Link-Layer/Cliente.cpp` y `Link-Layer/Servidor.cpp` con los siguientes parámetros:
+Para configurar el modelo de Capa de Enlace, se debe modificar el archivo `Link-Layer/Cliente.cpp` y
+`Link-Layer/Servidor.cpp` con los siguientes parámetros:
 
 Cliente y Servidor:
 
-`#define PORT_TX 8080`          Puerto del Servidor
-`#define IP_TX "127.0.0.1"`     IP de la máquina del Servidor
-`#define PORT_RX 8081`          Puerto del Cliente
-`#define IP_RX "127.0.0.1"`     IP de la máquina del Cliente
-
+* `#define PORT_TX 8080`          Puerto del Servidor
+* `#define IP_TX "127.0.0.1"`     IP de la máquina del Servidor
+* `#define PORT_RX 8081`          Puerto del Cliente
+* `#define IP_RX "127.0.0.1"`     IP de la máquina del Cliente
 
 Cliente:
 
-`#define MAX`                   Tamaño del buffer de datos
-`#define TAM`                   Tamaño de la ventana
-`clockTimer(RETARDO, TICKS)`    Retardo en milisegundos y cantidad de TICKS de RETARDO para el time out
+* `#define MAX`                   Tamaño del buffer de datos
+* `#define TAM`                   Tamaño de la ventana
+* `clockTimer(RETARDO, TICKS)`    Retardo en milisegundos y cantidad de TICKS de RETARDO para el time out
 
 Servidor:
-`agregarDato(RETARDO)`          Retardo en milisegundos para la recepción de datos
+
+* `agregarDato(RETARDO)`          Retardo en milisegundos para la recepción de datos
