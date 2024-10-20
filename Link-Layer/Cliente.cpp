@@ -36,7 +36,7 @@ typedef unsigned int Byte;
 #define PORT_RX 8081
 #define IP_RX "127.0.0.1"
 
-#define MAX 1024
+#define MAX 1024  // Tamaño del paquete
 #define TAM 8
 
 struct Trama {
@@ -462,10 +462,10 @@ void enviarTrama(Trama trama) {
 
 
 int ack_tipo(Trama trama){
-    if (trama.id==0 && trama.data==0 && trama.crc==60){
+    if (trama.id==0 && trama.data==0 && trama.crc==195){
         // Trama de inicio de comunicación
         return 0;
-    } else if (trama.id==0 && trama.data==0 && trama.crc==195) {
+    } else if (trama.id==0 && trama.data==0 && trama.crc==60) {
         // Trama de fin de comunicación
         return 1;
     } else if (trama.data==0 && trama.crc==127) {
@@ -526,7 +526,7 @@ void enviar_inicio(){
     Trama trama;
     trama.id = 0;
     trama.data = 0;
-    trama.crc = 60;
+    trama.crc = 195;
     enviarTrama(trama);
 }
 
@@ -534,7 +534,7 @@ void enviar_fin(){
     Trama trama;
     trama.id = 0;
     trama.data = 0;
-    trama.crc = 195;
+    trama.crc = 60;
     enviarTrama(trama);
 }
 
