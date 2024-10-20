@@ -1,3 +1,4 @@
+// Definicon de librerias
 #include <ctime>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,6 +22,12 @@
  * Autor: Juan Pablo Condori Tellez
  * https://github.com/CondoriJP/Data-Network-Course
  *
+ * Descripción:
+ * Cliente que envía un paquete de datos a un servidor.
+ *
+ *
+ * Compilación;
+ * g++ -o Cliente Cliente.cpp -pthread
  */
 
 typedef unsigned int Byte;
@@ -30,7 +37,7 @@ typedef unsigned int Byte;
 #define IP_RX "127.0.0.1"
 
 #define MAX 1024
-#define TAM 32
+#define TAM 8
 
 struct Trama {
     Byte id;
@@ -280,6 +287,11 @@ void temporizador(int &time) {
     }
 }
 
+/*
+ * Enviar datos del buffer Primario
+ * @parametro tick: tiempo de envio
+ *
+ */
 void enviar_datos(int &time, int tick, int tickTrama) {
     Byte num_trama;
     Byte data;
@@ -304,6 +316,12 @@ void enviar_datos(int &time, int tick, int tickTrama) {
     }
 }
 
+
+/*
+ * Aplicar ACK y NAK
+ * si se recibe un ACK se limpia la Trama
+ * si se recibe un NAK se reenvia la Trama
+ */
 void aplicar_ack(){
     Byte num_trama;
     Byte data;
@@ -320,7 +338,12 @@ void aplicar_ack(){
     }
 }
 
-
+/*
+ * Proceso inicial de envio de datos
+ * @parametro tick: tiempo de envio
+ * @parametro tickTrama: tiempo de time out en ticks
+ *      Ej: tick = 500ms y tickTrama = 10 -> time out = 500ms * 10 = 5s
+ */
 void clockTimer(int tick, int tickTrama) {
     int time = 0;
     enviar_inicio();
@@ -527,7 +550,7 @@ int main (int argc, char *argv[]) {
         b_S_ingreso();
         system("clear");
         transmitiendo = true;
-        clockTimer(25, 2);
+        clockTimer(500, 10);
     }
     return 0;
 }

@@ -1,9 +1,3 @@
-// Definir constantes
-#define PORT_TX 8081
-#define IP_TX "127.0.0.1"
-#define PORT_RX 8080
-#define IP_RX "127.0.0.1"
-
 // Definir Librerías
 #include <iostream>
 #include <cstring>
@@ -26,7 +20,19 @@
  * Autor: Juan Pablo Condori Tellez
  * https://github.com/CondoriJP/Data-Network-Course
  *
+ * Descripción:
+ * Servidor que recibe tramas de datos y las almacena en un buffer secundario.
+ * Las tramas de datos contienen un ID, un dato y un CRC.
+ *
+ * Compilación:
+ * g++ -o Servidor Servidor.cpp
  */
+
+// Definir constantes
+#define PORT_TX 8081
+#define IP_TX "127.0.0.1"
+#define PORT_RX 8080
+#define IP_RX "127.0.0.1"
 
 // Definir estructuras
 struct Trama {
@@ -326,7 +332,7 @@ int main (int argc, char *argv[]) {
     limpiarBufferSecundario();
     thread hilo_recibir(recibirTrama);
     hilo_recibir.detach();
-    agregarDato(10);
+    agregarDato(250);
     return 0;
 }
 
